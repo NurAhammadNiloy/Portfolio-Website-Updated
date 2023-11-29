@@ -48,9 +48,14 @@ body {
 }
 
 .logo {
+    position: relative;
     font-size: 2.5rem;
     color: var(--text-color);
     font-weight: 600;
+}
+
+.navbar {
+    position: relative;
 }
 
 .navbar a {
@@ -67,6 +72,7 @@ body {
 }
 
 #menu-icon {
+    position: relative;
     font-size: 3.6rem;
     color: var(--text-color);
     cursor: pointer;
@@ -82,7 +88,7 @@ section {
     display: flex;
     align-items: center;
     padding: 0 9%;
-    background: url(../image/home9.jpg) no-repeat;
+    background: url(/image/home9.jpg) no-repeat;
     background-size: contain;
     background-position: right;
 }
@@ -113,6 +119,25 @@ section {
     font-weight: 700;
     color: transparent;
     -webkit-text-stroke: .7px var(--main-color);
+    background-image: linear-gradient(var(--main-color), var(--main-color));
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-position: -33rem 0;
+    animation: homeBgText 6s linear infinite;
+    animation-delay: 2s;
+}
+
+.home-content .text-animate h3::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    border-right: 2px solid var(--main-color);
+    z-index: -1;
+    animation: homeCursorText 6s linear infinite;
+    animation-delay: 2s;
 }
 
 .home-content p {
@@ -295,6 +320,7 @@ span {
     border-bottom: .2rem solid var(--second-bg-color);
     border-left: .2rem solid var(--main-color);
     border-right: .2rem solid var(--main-color);
+    animation: aboutSpinner 6s linear infinite;
 }
 
 .about-content {
@@ -640,6 +666,23 @@ span {
     color: var(--main-color);
 }
 
+.animate {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: yellowgreen;
+    z-index: 98;
+}
+
+.logo .animate,
+.navbar .animate,
+#menu-icon .animate {
+    animation: showRight 1s ease forwards;
+    animation-delay: calc(.3s * var(--i));
+}
+
 
 /* BREAKPOINTS* */
 
@@ -730,7 +773,6 @@ span {
 
     .home-imgHover {
         pointer-events: none;
-        background: var(--bg-color);
         opacity: .6;
     }
 }
@@ -778,7 +820,7 @@ span {
     }
 } 
 
-@media (max-width: 371px) {
+@media (max-width: 376px) {
     .home {
         justify-content: center;
 
@@ -793,5 +835,55 @@ span {
 
     .home-content h1 {
         font-size: 5rem;
+    }
+}
+
+@keyframes homeBgText {
+    0%,
+    10%,
+    100% {
+        background-position: -33rem 0;
+    }
+
+    65%,
+    85% {
+        background-position: 0 0;
+    }
+
+    75%,
+    81% {
+        opacity: 100%;
+    }
+}
+
+@keyframes homeCursorText {
+    0%,
+    10%,
+    100% {
+        width: 0;
+    }
+
+    65%,
+    78%,
+    85% {
+        width: 100%;
+        opacity: 1;
+    }
+
+    75%,
+    81% {
+        opacity: 100%;
+    }
+}
+
+@keyframes aboutSpinner {
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}
+
+@keyframes showRight {
+    100% {
+        width: 0;
     }
 }
